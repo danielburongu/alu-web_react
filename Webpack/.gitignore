@@ -1,4 +1,5 @@
 node_modules/
-dist/
+dist/main.js
 *.log
 *.map
+/dist/
