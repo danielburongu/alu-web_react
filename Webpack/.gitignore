@@ -2,4 +2,6 @@ node_modules/
 dist/main.js
 *.log
 *.map
-/dist/
+# Ignore the dist directory and its contents
+task_0/dist/
+
