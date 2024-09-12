@@ -9,7 +9,6 @@ logs
 jspm_packages/
 
 # Build directories
-dist/
 build/
 
 # Environment files
