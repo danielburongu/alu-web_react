@@ -1,0 +1,41 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+
+# Dependency directories
+jspm_packages/
+
+# Build directories
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.ntvs_analysis.dat
+*.ncb
+*.sdf
+*.opensdf
+*.sw?
+*.suo
+
+# NPM package lock files (keep if you want to ensure consistent package versions)
+package-lock.json
+yarn.lock

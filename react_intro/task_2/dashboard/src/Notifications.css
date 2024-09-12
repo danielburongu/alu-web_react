@@ -1,0 +1,21 @@
+/* src/Notifications.css */
+
+.Notifications {
+    border: 1px solid red;
+    padding: 10px;
+    position: relative;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li[data-priority="default"] {
+    color: blue;
+  }
+  
+  li[data-priority="urgent"] {
+    color: red;
+  }
+  

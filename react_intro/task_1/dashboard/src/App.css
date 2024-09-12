@@ -1,0 +1,41 @@
+/* App.css */
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 2px solid #e01d3f; /* Matching the Holberton red color */
+}
+
+.App-logo {
+  height: 100px;
+  margin-left: 20px;
+}
+
+.App-header h1 {
+  color: #e01d3f; /* Matching the Holberton red color */
+  font-size: 2rem;
+  margin: 0;
+  flex-grow: 1;
+  text-align: left;
+}
+
+.App-body {
+  margin: 20px;
+  font-size: 1.2rem;
+}
+
+.App-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  border-top: 1px solid #e01d3f;
+  font-size: 0.9rem;
+}
