@@ -1,7 +1,8 @@
 node_modules/
-dist/main.js
 *.log
 *.map
-# Ignore the dist directory and its contents
-task_0/dist/
-
+# Ignore main.js but not the whole dist directory
+dist/main.js
+dist/*.LICENSE.txt
+# Ignore the public directory and its contents
+task_3/public/
