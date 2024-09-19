@@ -12,10 +12,21 @@ afterEach(() => {
 });
 
 describe("BodySectionWithMarginBottom tests", () => {
-  it("should apply margin bottom to child component", () => {
+  it("should render BodySection component with margin bottom", () => {
     const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
 
+    // Test if BodySectionWithMarginBottom renders BodySection component
     expect(wrapper.find(BodySection)).toHaveLength(1);
-    expect(wrapper.find(BodySection).html()).toEqual('<div class="bodySection"><h2>test title</h2></div>');
+
+    // Dive into BodySection to test the content inside
+    const bodySectionWrapper = wrapper.find(BodySection).dive();
+    expect(bodySectionWrapper.find('h2').text()).toEqual('test title');
+  });
+
+  it("should apply correct class for margin bottom", () => {
+    const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
+
+    // Check if the correct Aphrodite class is applied
+    expect(wrapper.find('.bodySectionWithMargin')).toHaveLength(1);
   });
 });
