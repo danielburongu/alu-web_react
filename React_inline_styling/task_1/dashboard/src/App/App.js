@@ -36,6 +36,7 @@ class App extends React.Component {
       this.props.logOut();
     }
   }
+
   componentDidMount() {
     document.addEventListener("keydown", this.handleKeyPress);
   }
@@ -63,11 +64,15 @@ class App extends React.Component {
           )}
           <BodySection title="News from the school">
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis at tempora odio, necessitatibus repudiandae reiciendis cum nemo sed asperiores ut molestiae eaque aliquam illo ipsa
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Perspiciatis at tempora odio, necessitatibus repudiandae reiciendis
+              cum nemo sed asperiores ut molestiae eaque aliquam illo ipsa
               iste vero dolor voluptates.
             </p>
           </BodySection>
-          <Footer />
+          <div className={css(styles.footer)}>
+            <Footer />
+          </div>
         </div>
       </React.Fragment>
     );
@@ -80,6 +85,20 @@ const styles = StyleSheet.create({
     maxWidth: "100vw",
     position: "relative",
     fontFamily: "Arial, Helvetica, sans-serif",
+  },
+  body: {
+    fontSize: "16px",
+    color: "#333",
+    margin: "0",
+    padding: "0",
+  },
+  footer: {
+    borderTop: "1px solid #ccc",
+    padding: "10px",
+    textAlign: "center",
+    width: "100%",
+    position: "absolute",
+    bottom: "0",
   },
 });
 
