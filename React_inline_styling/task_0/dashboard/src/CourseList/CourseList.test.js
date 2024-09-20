@@ -10,16 +10,23 @@ const listCourses = [
 ];
 
 describe('<CourseList />', () => {
-    it('renders an <CourseList /> component', () => {
+    it('renders an empty <CourseList /> component without crashing', () => {
         const wrapper = shallow(<CourseList />);
         expect(wrapper).toHaveLength(1);
-        const wrapperTwo = shallow(<CourseList listCourses={ [] } />);
-        expect(wrapperTwo).toHaveLength(1);
     });
 
-    it('renders a <CourseList /> component and verifies 5 rows', () => {
-        const wrapper = shallow(<CourseList listCourses={ listCourses } />);
+    it('renders a <CourseList /> component with an empty listCourses prop', () => {
+        const wrapper = shallow(<CourseList listCourses={[]} />);
+        expect(wrapper).toHaveLength(1);
+        expect(wrapper.find(CourseListRow)).toHaveLength(3); // 2 headers + 1 row for "No course available yet"
+        expect(wrapper.find(CourseListRow).last().props().textFirstCell).toEqual('No course available yet');
+    });
+
+    it('renders a <CourseList /> component and verifies 5 rows when listCourses is populated', () => {
+        const wrapper = shallow(<CourseList listCourses={listCourses} />);
         expect(wrapper.find(CourseListRow)).toHaveLength(5);
+
+        // Check headers
         expect(wrapper.find(CourseListRow).get(0).props.textFirstCell).toEqual('Available courses');
         expect(wrapper.find(CourseListRow).get(0).props.isHeader).toBe(true);
 
@@ -27,6 +34,7 @@ describe('<CourseList />', () => {
         expect(wrapper.find(CourseListRow).get(1).props.textSecondCell).toEqual('Credit');
         expect(wrapper.find(CourseListRow).get(1).props.isHeader).toBe(true);
 
+        // Check course rows
         expect(wrapper.find(CourseListRow).get(2).props.textFirstCell).toEqual('ES6');
         expect(wrapper.find(CourseListRow).get(2).props.textSecondCell).toEqual(60);
         expect(wrapper.find(CourseListRow).get(2).props.isHeader).toBe(false);
