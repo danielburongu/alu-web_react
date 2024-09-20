@@ -14,13 +14,14 @@ describe('<CourseListRow />', () => {
         expect(wrapper.find('th').at(0).props().colSpan).toEqual(2);
     });
 
-    it('tests the component renders two th cells when textSecondCell is present', () => {
+    it('renders two th elements when textSecondCell is present and isHeader is true', () => {
         const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="Holberton" textSecondCell="Second" />);
         expect(wrapper.find('th')).toHaveLength(2);
     });
 
-    it('tests the component renders correctly two td elements within a tr element when isHeader is false', () => {
+    it('renders no th elements and two td elements when isHeader is false', () => {
         const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="Holberton" textSecondCell="Second" />);
-        expect(wrapper.find('td')).toHaveLength(2);
+        expect(wrapper.find('th')).toHaveLength(0);  // Ensure no <th> when isHeader is false
+        expect(wrapper.find('td')).toHaveLength(2);  // Expect two <td> elements
     });
 });
