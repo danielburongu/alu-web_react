@@ -1,26 +1,35 @@
+import { shallow, mount } from "enzyme";
 import React from "react";
 import BodySection from "./BodySection";
-import { shallow } from "enzyme";
+import { StyleSheetTestUtils } from "aphrodite";
 
-describe("BodySection tests", () => {
-  it("should render correctly", () => {
+describe("<BodySection />", () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+  });
+
+  it("BodySection renders without crashing", () => {
+    const wrapper = shallow(<BodySection />);
+    expect(wrapper.exists()).toEqual(true);
+  });
+
+  it("BodySection renders without crashing", () => {
     const wrapper = shallow(
       <BodySection title="test title">
         <p>test children node</p>
       </BodySection>
     );
 
-    // Test if the component itself renders correctly
-    expect(wrapper.exists()).toBe(true);
-
-    // Test if the h2 element with the correct title is rendered
     const h2 = wrapper.find("h2");
-    expect(h2.exists()).toBe(true);
+    const p = wrapper.find("p");
+
+    expect(h2).toHaveLength(1);
     expect(h2.text()).toEqual("test title");
 
-    // Test if the children nodes are rendered correctly
-    const p = wrapper.find("p");
-    expect(p.exists()).toBe(true);
+    expect(p).toHaveLength(1);
     expect(p.text()).toEqual("test children node");
   });
 });

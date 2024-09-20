@@ -1,32 +1,42 @@
+import { shallow, mount } from "enzyme";
 import React from "react";
-import { shallow } from "enzyme";
 import BodySectionWithMarginBottom from "./BodySectionWithMarginBottom";
-import BodySection from "./BodySection";
 import { StyleSheetTestUtils } from "aphrodite";
 
-beforeEach(() => {
-  StyleSheetTestUtils.suppressStyleInjection();
-});
-afterEach(() => {
-  StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-});
-
-describe("BodySectionWithMarginBottom tests", () => {
-  it("should render BodySection component with margin bottom", () => {
-    const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
-
-    // Test if BodySectionWithMarginBottom renders BodySection component
-    expect(wrapper.find(BodySection)).toHaveLength(1);
-
-    // Dive into BodySection to test the content inside
-    const bodySectionWrapper = wrapper.find(BodySection).dive();
-    expect(bodySectionWrapper.find('h2').text()).toEqual('test title');
+describe("<BodySectionWithMarginBottom />", () => {
+  beforeAll(() => {
+    StyleSheetTestUtils.suppressStyleInjection();
+  });
+  afterAll(() => {
+    StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
   });
 
-  it("should apply correct class for margin bottom", () => {
-    const wrapper = shallow(<BodySectionWithMarginBottom title="test title" />);
+  it("BodySectionWithMarginBottom renders without crashing", () => {
+    const wrapper = shallow(<BodySectionWithMarginBottom />);
+    expect(wrapper.exists()).toEqual(true);
+  });
 
-    // Check if the correct Aphrodite class is applied
-    expect(wrapper.find('.bodySectionWithMargin')).toHaveLength(1);
+  it("Shallowing the component should render correctly a BodySection component and that the props are passed correctly to the child component", () => {
+    const wrapper = shallow(
+      <BodySectionWithMarginBottom title="test title">
+        <p>test children node</p>
+      </BodySectionWithMarginBottom>
+    );
+
+    const BodySection = wrapper.find("BodySection");
+
+    expect(BodySection).toHaveLength(1);
+    expect(BodySection.props().title).toEqual("test title");
+
+    const internalBody = BodySection.dive();
+
+    const h2 = internalBody.find("h2");
+    const p = internalBody.find("p");
+
+    expect(h2).toHaveLength(1);
+    expect(h2.text()).toEqual("test title");
+
+    expect(p).toHaveLength(1);
+    expect(p.text()).toEqual("test children node");
   });
 });
