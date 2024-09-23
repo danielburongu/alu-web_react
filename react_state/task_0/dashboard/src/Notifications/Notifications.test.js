@@ -33,7 +33,7 @@ describe('<Notifications />', () => {
     expect(wrapper.find('.menuItem')).toHaveLength(1);
   });
 
-  it('does display div.Notifications when displayDrawer is true', () => {  // Fixed typo in test description
+  it('does display div.Notifications when displayDrawer is true', () => {  
     const wrapper = shallow(<Notifications displayDrawer={true} />);
     expect(wrapper.find('.Notifications')).toHaveLength(1);
   });
@@ -77,8 +77,12 @@ describe('<Notifications />', () => {
   // New Test: Verifies clicking on the menu item calls handleDisplayDrawer
   it('verifies that clicking on the menu item calls handleDisplayDrawer', () => {
     const handleDisplayDrawer = jest.fn();
-    const wrapper = shallow(<Notifications handleDisplayDrawer={handleDisplayDrawer} />);
-    
+    const wrapper = shallow(<Notifications displayDrawer={false} handleDisplayDrawer={handleDisplayDrawer} />);
+
+    // Ensure menuItem exists when displayDrawer is false
+    expect(wrapper.find('.menuItem')).toHaveLength(1);
+
+    // Simulate click on the menu item
     wrapper.find('.menuItem').simulate('click');
     expect(handleDisplayDrawer).toHaveBeenCalled();
   });
@@ -87,7 +91,8 @@ describe('<Notifications />', () => {
   it('verifies that clicking on the close button calls handleHideDrawer', () => {
     const handleHideDrawer = jest.fn();
     const wrapper = shallow(<Notifications displayDrawer={true} handleHideDrawer={handleHideDrawer} />);
-    
+
+    // Simulate click on the close button
     wrapper.find('button').simulate('click');
     expect(handleHideDrawer).toHaveBeenCalled();
   });
